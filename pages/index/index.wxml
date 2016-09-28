@@ -1,0 +1,24 @@
+<block wx:if="{{loading === true && audioAction.method == 'play'}}">
+  <loading>歌曲加载中</loading>
+</block>
+<audio src="{{src}}" name="{{name}}" author="{{author}}" poster="{{poster}}" action="{{audioAction}}" bindplay="started" bindended="ended" bindtimeupdate="timeupdate" controls></audio>
+<scroll-view class="song-list">
+  <block wx:for="{{displayList}}" wx:for-item="song" wx:for-index="index">
+    <view class="song-item {{index % 2 === 1 ? 'even': 'odd' }} {{src === song.src ? 'current': ''}}" bindtap="playItem" data-src="{{song.src}}">
+      <view class="song-no">{{displayList.length - index }}</view><view class="song-name">{{song.songname}}</view>
+    </view>
+  </block>
+</scroll-view>
+<view class="footer">
+  <view class="song-info">
+    <view class="song-name">{{name}}</view>
+    <view class="song-time">{{time}}</view>
+  </view>
+  <view class="controls">
+    <view bindtap="prev">上一首</view>
+    <view bindtap="play_pause">{{status}}</view>
+    <view bindtap="next">下一首</view>
+    <view bindtap="switchMode">{{mode}}</view>
+  </view>
+</view>
+
