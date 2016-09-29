@@ -46,16 +46,27 @@ audio{
   overflow: hidden;
 }
 .song-info .song-time{
-  width: 60px;
-  text-align: center;
+  width: 50px;
+  text-align: right;
 }
 .controls{
-  height: 40px;
-  line-height: 40px;
+  padding: 5px 0;
   font-size: 15px;
-}
-.controls view{
-  float:left;
-  width: 25%;
   text-align: center;
+}
+.controls .btn{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  text-align: center;
+  text-indent: -999px;
+  background-size: 100% 100%;
+}
+.controls .btn-mode{
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 15px;
+  bottom: 13px;
 }

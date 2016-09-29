@@ -15,10 +15,10 @@
     <view class="song-time">{{time}}</view>
   </view>
   <view class="controls">
-    <view bindtap="prev">上一首</view>
-    <view bindtap="play_pause">{{status}}</view>
-    <view bindtap="next">下一首</view>
-    <view bindtap="switchMode">{{mode}}</view>
+    <view class="btn btn-prev" bindtap="prev" style="background-image:url(../../images/prev.png)">上一首</view>
+    <view class="btn btn-play" bindtap="play_pause" style="background-image:url(../../images/{{status}}.png)">{{status}}</view>
+    <view class="btn btn-next" bindtap="next" style="background-image:url(../../images/next.png)">下一首</view>
+    <view class="btn btn-mode" bindtap="switchMode" style="background-image:url(../../images/{{mode}}.png)">{{mode}}</view>
   </view>
 </view>
 

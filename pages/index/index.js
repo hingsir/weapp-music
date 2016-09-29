@@ -4,8 +4,8 @@ var displayList = songList.filter(function(item){
   return item.type === 'MP3'
 })
 var playList = displayList.slice(0)
-var status = ['播放','暂停']
-var modes = ['循环','随机','单曲']
+var status = ['play','pause']
+var modes = ['loop','random','single']
 make_looper(modes)
 make_looper(playList, setCurrent)
 
@@ -17,8 +17,8 @@ Page({
     author: '寒江雪',
     time: '',
     poster: '../../images/hanjiangxue.jpg',
-    status: '播放',
-    mode: '循环',
+    status: 'play',
+    mode: 'loop',
     audioAction: {
       method: 'pause'
     },
@@ -40,7 +40,10 @@ Page({
     })
   },
   playItem: function(e){
-    song = playList.current(e.currentTarget.dataset.src)
+    if(this.data.mode === 'single'){
+      this.setMode('random')
+    }
+    var song = playList.current(e.currentTarget.dataset.src)
     this.setData({
       src: song.src,
       name: song.songname,
@@ -53,19 +56,19 @@ Page({
       if(flag){
         this.play()
 	      this.setData({
-          status: '暂停'
+          status: 'pause'
         })
       }else{
         this.pause()
         this.setData({
-          status: '播放'
+          status: 'play'
         })
       }
     }
   })(0),
   next: function(){
-    if(this.data.mode === '单曲'){
-      this.setMode('随机')
+    if(this.data.mode === 'single'){
+      this.setMode('random')
     }
     var song = playList.next()
     this.setData({
@@ -75,8 +78,8 @@ Page({
     this.play()
   },
   prev: function(){
-    if(this.data.mode === '单曲'){
-      this.setMode('随机')
+    if(this.data.mode === 'single'){
+      this.setMode('random')
     }
     var song = playList.prev()
     this.setData({
@@ -106,13 +109,13 @@ Page({
     this.play()
   },
   setMode: function(mode){
-    if(mode === '循环'){
+    if(mode === 'loop'){
       playList = displayList.slice(0)
-    }else if(mode === '随机'){
+    }else if(mode === 'random'){
       playList = displayList.slice(0).sort(function(){
         return Math.random > 0.5 ? 1 : -1
       })
-    }else if(mode === '单曲'){
+    }else if(mode === 'single'){
       playList = [playList.current()]
     }
     make_looper(playList, setCurrent)
