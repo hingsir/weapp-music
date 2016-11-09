@@ -36,7 +36,7 @@ Page({
     var currentTime = e.detail.currentTime
     var duration = e.detail.duration
     this.setData({
-      time: formatTime(duration - currentTime) 
+      time: formatTime(duration - currentTime)
     })
   },
   playItem: function(e){
@@ -113,10 +113,10 @@ Page({
       playList = displayList.slice(0)
     }else if(mode === 'random'){
       playList = displayList.slice(0).sort(function(){
-        return Math.random > 0.5 ? 1 : -1
+        return Math.random() > 0.5 ? 1 : -1
       })
     }else if(mode === 'single'){
-      playList = [playList.current()]
+      playList = [playList.current(src)]
     }
     make_looper(playList, setCurrent)
     this.setData({
