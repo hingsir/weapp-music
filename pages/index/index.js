@@ -24,6 +24,13 @@ Page({
     },
     loading: true
   },
+  onShareAppMessage: function () {
+    return {
+      title: '笛曲-唱吧寒江雪',
+      desc: '幽幽笛声仿若天籁',
+      path: '/pages/index/index'
+    }
+  },
   started: function(){
     this.setData({
       loading: false
@@ -36,7 +43,8 @@ Page({
     var currentTime = e.detail.currentTime
     var duration = e.detail.duration
     this.setData({
-      time: formatTime(duration - currentTime)
+      time: formatTime(duration - currentTime),
+      loading: false
     })
   },
   playItem: function(e){
@@ -50,22 +58,19 @@ Page({
     })
     this.play()
   },
-  play_pause: (function(flag){
-    return function(){
-      flag = !flag
-      if(flag){
-        this.play()
-	      this.setData({
-          status: 'pause'
-        })
-      }else{
-        this.pause()
-        this.setData({
-          status: 'play'
-        })
-      }
+  play_pause: function () {
+    if(this.data.status == 'play'){
+      this.play()
+      this.setData({
+        status: 'pause'
+      })
+    } else {
+      this.pause()
+      this.setData({
+        status: 'play'
+      })
     }
-  })(0),
+  },
   next: function(){
     if(this.data.mode === 'single'){
       this.setMode('random')
@@ -90,6 +95,7 @@ Page({
   },
   play: function(){
     this.setData({
+      status: 'pause',
       audioAction: {
         method: 'play'
       },
@@ -98,6 +104,7 @@ Page({
   },
   pause: function(){
     this.setData({
+      status: 'play',
       audioAction: {
         method: 'pause'
       },
