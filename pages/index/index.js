@@ -71,10 +71,13 @@ Page({
       })
     }
   },
-  next: function(){
-    if(this.data.mode === 'single'){
-      this.setMode('random')
+  next: function(e){
+    if(e){
+      if (this.data.mode === 'single') {
+        this.setMode('random')
+      }
     }
+    
     var song = playList.next()
     this.setData({
       src: song.src,
