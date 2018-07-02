@@ -123,7 +123,7 @@ Page({
         return Math.random() > 0.5 ? 1 : -1
       })
     }else if(mode === 'single'){
-      playList = [playList.current(src)]
+      playList = [playList.current(this.data.src)]
     }
     make_looper(playList, setCurrent)
     this.setData({
@@ -131,6 +131,9 @@ Page({
     })
   },
   onLoad: function () {
+    wx.setNavigationBarTitle({
+      title: app.globalData.artist,
+    })
   }
 })
 

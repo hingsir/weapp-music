@@ -3,7 +3,7 @@
 </block>
 <audio src="{{src}}" name="{{name}}" author="{{author}}" poster="{{poster}}" action="{{audioAction}}" bindplay="started" bindended="ended" bindtimeupdate="timeupdate" controls></audio>
 <scroll-view class="song-list">
-  <block wx:for="{{displayList}}" wx:for-item="song" wx:for-index="index">
+  <block wx:for="{{displayList}}" wx:for-item="song" wx:for-index="index" wx:key="song.src">
     <view class="song-item {{index % 2 === 1 ? 'even': 'odd' }} {{src === song.src ? 'current': ''}}" bindtap="playItem" data-src="{{song.src}}">
       <view class="song-no">{{displayList.length - index }}</view><view class="song-name">{{song.songname}}</view>
     </view>
