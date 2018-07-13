@@ -31,6 +31,10 @@ Page({
       path: '/pages/index/index'
     }
   },
+  binderror: function(){
+    console.error(`${name}(${src})播放错误`)
+    this.next()
+  },
   started: function(){
     this.setData({
       loading: false
