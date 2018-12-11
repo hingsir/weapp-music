@@ -7,7 +7,7 @@ App({
     
   },
   globalData:{
-    songList: require('./xjf.js'),
+    songList: require('./data.js'),
     artist: '谢加非' //寒江雪
   }
 })
