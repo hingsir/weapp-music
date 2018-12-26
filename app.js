@@ -1,4 +1,9 @@
 //app.js
+
+var artists = require('./artists')
+
+var artist = artists[2]
+
 App({
   onLaunch: function () {
     
@@ -7,7 +12,7 @@ App({
     
   },
   globalData:{
-    songList: require('./data.js'),
-    artist: '谢加非' //寒江雪
+    songList: require(`./data/${artist.uid}.js`),
+    artist: artist.uname
   }
 })

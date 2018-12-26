@@ -1,0 +1,24 @@
+{
+  "name": "weapp-music",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "spider": "node spider/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hingsir/weapp-music.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hingsir/weapp-music/issues"
+  },
+  "homepage": "https://github.com/hingsir/weapp-music#readme",
+  "devDependencies": {
+    "jquery": "^2.2.4",
+    "jsdom": "^9.2.1"
+  }
+}
