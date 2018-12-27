@@ -1,6 +1,9 @@
 
 
 module.exports = [{
+  uid: 'liangsheng',
+  uname: '亮声open'
+},{
   uid: '63156426',
   uname: '谢加非'
 },

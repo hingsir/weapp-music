@@ -2,7 +2,7 @@
 
 var artists = require('./artists')
 
-var artist = artists[2]
+var artist = artists[0]
 
 App({
   onLaunch: function () {

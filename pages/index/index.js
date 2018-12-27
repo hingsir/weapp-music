@@ -1,7 +1,7 @@
 var app = getApp()
 var songList = app.globalData.songList
 var displayList = songList.filter(function(item){
-  return item.type === 'MP3'
+  return item.type !== 'MV'
 })
 var playList = displayList.slice(0)
 var status = ['play','pause']
