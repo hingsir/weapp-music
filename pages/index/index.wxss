@@ -70,3 +70,17 @@ audio{
   right: 15px;
   bottom: 13px;
 }
+
+.switch-artist{
+  position: fixed;
+  color: #fff;
+  z-index: 100;
+  bottom: 200rpx;
+  right: 30rpx;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: #31c27c;
+}

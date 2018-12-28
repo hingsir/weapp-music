@@ -1,19 +1,15 @@
 var app = getApp()
-var songList = app.globalData.songList
-var displayList = songList.filter(function(item){
-  return item.type !== 'MV'
-})
-var playList = displayList.slice(0)
-var status = ['play','pause']
-var modes = ['loop','random','single']
+
+var artists = require('../../artists')
+var modes = ['loop', 'random', 'single']
 make_looper(modes)
-make_looper(playList, setCurrent)
 
 Page({
   data: {
-    displayList: displayList,
-    src: playList[0].src,
-    name: playList[0].songname,
+    artistIndex: 0,
+    displayList: [],
+    src: null,
+    name: null,
     author: '寒江雪',
     time: '',
     poster: '../../images/hanjiangxue.jpg',
@@ -22,6 +18,7 @@ Page({
     audioAction: {
       method: 'pause'
     },
+    artist: null,
     loading: true
   },
   onShareAppMessage: function () {
@@ -32,7 +29,7 @@ Page({
     }
   },
   binderror: function(){
-    console.error(`${name}(${src})播放错误`)
+    console.error(`${this.data.name}(${this.data.src})播放错误`)
     this.next()
   },
   started: function(){
@@ -55,7 +52,7 @@ Page({
     if(this.data.mode === 'single'){
       this.setMode('random')
     }
-    var song = playList.current(e.currentTarget.dataset.src)
+    var song = this.data.playList.current(e.currentTarget.dataset.src)
     this.setData({
       src: song.src,
       name: song.songname,
@@ -82,7 +79,7 @@ Page({
       }
     }
     
-    var song = playList.next()
+    var song = this.data.playList.next()
     this.setData({
       src: song.src,
       name: song.songname,
@@ -93,7 +90,7 @@ Page({
     if(this.data.mode === 'single'){
       this.setMode('random')
     }
-    var song = playList.prev()
+    var song = this.data.playList.prev()
     this.setData({
       src: song.src,
       name: song.songname,
@@ -123,10 +120,11 @@ Page({
     this.play()
   },
   setMode: function(mode){
+    var playList = this.data.playList
     if(mode === 'loop'){
-      playList = displayList.slice(0)
+      playList = this.data.displayList.slice(0)
     }else if(mode === 'random'){
-      playList = displayList.slice(0).sort(function(){
+      playList = this.data.displayList.slice(0).sort(function(){
         return Math.random() > 0.5 ? 1 : -1
       })
     }else if(mode === 'single'){
@@ -134,13 +132,46 @@ Page({
     }
     make_looper(playList, setCurrent)
     this.setData({
-      mode: mode
+      mode: mode,
+      playList
+    })
+  },
+  switchArtist: function(e){
+    var artistIndex = e.detail.value
+    var artist = artists[artistIndex]
+    this.setData({
+      artistIndex,
+      artist: artist
+    })
+    this.setArtist(artist)
+    this.play()
+  },
+  setArtist: function (artist){
+    wx.setNavigationBarTitle({
+      title: artist.uname,
+    })
+
+    var songList = require(`../../data/${artist.uid}.js`)
+
+    var displayList = songList.filter(function (item) {
+      return item.type !== 'MV'
+    })
+    var playList = displayList.slice(0)
+    make_looper(playList, setCurrent)
+
+    this.setData({
+      src: playList[0].src,
+      name: playList[0].songname,
+      artists,
+      artist,
+      playList,
+      displayList
     })
   },
   onLoad: function () {
-    wx.setNavigationBarTitle({
-      title: app.globalData.artist,
-    })
+    var artist = artists[this.data.artistIndex]
+
+    this.setArtist(artist)  
   }
 })
 
