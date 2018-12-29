@@ -4,7 +4,9 @@ var jsdom = require("jsdom")
 var fs = require("fs")
 var jquery = fs.readFileSync("./node_modules/jquery/dist/jquery.js", "utf-8")
 
-var artists = require('../artists')
+var artists = require('../artists').filter((item) => {
+  return /^\d+$/.test(item.uid)
+})
 
 var timeoutIndex = 0;
 var artistIndex = 0
