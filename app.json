@@ -2,6 +2,9 @@
   "pages": [
     "pages/index/index"
   ],
+  "requiredBackgroundModes": [
+    "audio"
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#31c27c",

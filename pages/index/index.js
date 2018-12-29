@@ -23,10 +23,12 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '笛曲-唱吧寒江雪',
-      desc: '幽幽笛声仿若天籁',
-      path: '/pages/index/index'
+      title: `${this.data.artist.uname}-${this.data.name}`,
+      path: `/pages/index/index?artistIndex=${this.data.artistIndex}&name=${this.data.name}&src=${this.data.src}`
     }
+  },
+  bindpause: function(){
+    this.pause()
   },
   binderror: function(){
     console.error(`${this.data.name}(${this.data.src})播放错误`)
@@ -98,21 +100,46 @@ Page({
     this.play()
   },
   play: function(){
-    this.setData({
-      status: 'pause',
-      audioAction: {
-        method: 'play'
-      },
-      loading: true
+    // this.setData({
+    //   status: 'pause',
+    //   audioAction: {
+    //     method: 'play'
+    //   },
+    //   loading: true
+    // })
+    const backgroundAudioManager = wx.getBackgroundAudioManager()
+    backgroundAudioManager.onNext(this.next)
+    backgroundAudioManager.onPrev(this.prev)
+    backgroundAudioManager.onTimeUpdate(() => {
+      let {duration, currentTime} = backgroundAudioManager
+      this.setData({
+        time: formatTime(duration - currentTime),
+        loading: false
+      })
     })
+    backgroundAudioManager.onPlay(() => {
+      this.setData({
+        status: 'pause',
+        loading: true
+      })
+    })
+    backgroundAudioManager.onPause(this.pause)
+    backgroundAudioManager.onEnded(this.ended)
+    backgroundAudioManager.onError(this.binderror)
+    backgroundAudioManager.title = this.data.name
+    backgroundAudioManager.singer = this.data.artist.uname
+    backgroundAudioManager.src = this.data.src
+    backgroundAudioManager.play()
   },
   pause: function(){
     this.setData({
       status: 'play',
-      audioAction: {
-        method: 'pause'
-      },
+      // audioAction: {
+      //   method: 'pause'
+      // },
     })
+    const backgroundAudioManager = wx.getBackgroundAudioManager()
+    backgroundAudioManager.pause()
   },
   switchMode: function(){
     var mode = modes.next()
@@ -146,7 +173,7 @@ Page({
     this.setArtist(artist)
     this.play()
   },
-  setArtist: function (artist){
+  setArtist: function (artist, src, name){
     wx.setNavigationBarTitle({
       title: artist.uname,
     })
@@ -160,18 +187,21 @@ Page({
     make_looper(playList, setCurrent)
 
     this.setData({
-      src: playList[0].src,
-      name: playList[0].songname,
+      src: src || playList[0].src,
+      name: name || playList[0].songname,
       artists,
       artist,
       playList,
       displayList
     })
   },
-  onLoad: function () {
-    var artist = artists[this.data.artistIndex]
+  onLoad: function (options) {
+    var src = options.src,
+        name = options.name,
+        artistIndex = options.artistIndex || this.data.artistIndex
 
-    this.setArtist(artist)  
+    var artist = artists[artistIndex]
+    this.setArtist(artist, src, name)  
   }
 })
 
