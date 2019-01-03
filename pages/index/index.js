@@ -6,7 +6,7 @@ make_looper(modes)
 
 Page({
   data: {
-    artistIndex: 0,
+    artistIndex: 3,
     displayList: [],
     src: null,
     name: null,
