@@ -33,6 +33,7 @@ Page({
     this.next()
   },
   started: function(){
+    console.log(`开始播放：${this.data.src}`)
     this.setData({
       loading: false
     })
