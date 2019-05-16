@@ -63,14 +63,9 @@ Page({
   play_pause: function () {
     if(this.data.status == 'play'){
       this.play()
-      this.setData({
-        status: 'pause'
-      })
     } else {
       this.pause()
-      this.setData({
-        status: 'play'
-      })
+      
     }
   },
   next: function(e){
@@ -99,6 +94,12 @@ Page({
     this.play()
   },
   play: function(){
+
+    if (new Date().getHours() > 18) {
+      console.log('收工了！！！')
+      return this.pause()
+    }
+
     this.setData({
       status: 'pause',
       audioAction: {
@@ -171,9 +172,9 @@ Page({
   },
   onLoad: function () {
     var artist = artists[this.data.artistIndex]
-
     this.setArtist(artist)  
-  }
+    
+  },
 })
 
 function setCurrent(src){
