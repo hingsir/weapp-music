@@ -95,7 +95,7 @@ Page({
   },
   play: function(){
 
-    if (new Date().getHours() > 18) {
+    if (new Date().getHours() > 20) {
       console.log('收工了！！！')
       return this.pause()
     }
