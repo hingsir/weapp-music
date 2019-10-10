@@ -1,0 +1,18 @@
+<!--pages/search/search.wxml-->
+<view class="search-bar">
+  <input placeholder="请输入关键字" confirm-type="search" bindconfirm="doSearch"></input>
+</view>
+
+<block wx:if="{{results && results.length}}">
+  <text class="title">搜索结果（{{results.length}}条）</text>
+  <view class="song-list" wx:for="{{results}}" wx:for-item="item" wx:for-index="index" wx:key="item.song.src">
+    <view class="song-item {{index % 2 === 1 ? 'even': 'odd' }}" bindtap="playItem" data-item="{{item}}">
+      <view class="song-no">{{index + 1 }}</view>
+      <view class="song-name">{{item.song.songname}}</view>
+      <view class="artist">{{item.artist.uname}}</view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{results && results.length === 0}}">
+  <view class="nodata">未搜索到任何歌曲</view>
+</block>

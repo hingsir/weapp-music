@@ -1,10 +1,11 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#31c27c",
+    "navigationBarBackgroundColor": "#ea5504",
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "white"
   },

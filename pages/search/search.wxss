@@ -1,0 +1,44 @@
+/* pages/search/search.wxss */
+.search-bar{
+  padding: 20rpx 30rpx
+}
+.search-bar input{
+  border: 1rpx solid #eee;
+  padding: 10rpx 20rpx;
+  font-size: 28rpx;
+}
+.title{
+  font-size: 29rpx;
+  font-weight: 500;
+  padding: 0 30rpx 30rpx;
+}
+
+.song-list{
+  color: #666;
+  font-size: 28rpx;
+}
+.song-item {
+  display: flex;
+  padding: 10px;
+}
+.song-item.even{
+  background: #f3f3f3;
+}
+
+.song-item .song-no{
+  width: 30px;
+  text-align: left;
+  padding-left: 30rpx;
+}
+.song-item .song-name{
+  flex: 1;
+}
+.song-item .artist{
+  flex: 0.5
+}
+
+.nodata{
+  text-align: center;
+  padding: 30rpx;
+  font-size: 28rpx;
+}

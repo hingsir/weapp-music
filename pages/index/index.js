@@ -19,7 +19,8 @@ Page({
       method: 'pause'
     },
     artist: null,
-    loading: true
+    loading: true,
+    theme: '#31c27c'
   },
   onShareAppMessage: function () {
     return {
@@ -170,11 +171,27 @@ Page({
       displayList
     })
   },
+  goSearch: function(){
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
+  },
   onLoad: function () {
     var artist = artists[this.data.artistIndex]
-    this.setArtist(artist)  
-    
+    this.setArtist(artist)
   },
+  onShow: function(){
+    const item = app.globalData.selectedSearchItem
+    if (item) {
+      var artist = artists[item.artistIndex]
+      this.setArtist(artist)
+      this.setData({
+        src: item.song.src,
+        name: item.song.songname
+      })
+      this.play()
+    } 
+  }
 })
 
 function setCurrent(src){

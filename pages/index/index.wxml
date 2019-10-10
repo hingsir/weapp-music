@@ -21,5 +21,6 @@
     <image class="btn btn-mode" bindtap="switchMode" src="/images/{{mode}}.png"></image>
   </view>
 </view>
+<view class="switch-artist search" bindtap="goSearch">搜索</view>
 <picker value="0" range="{{artists}}" range-key="uname" bindchange="switchArtist" class="switch-artist">切换</picker>
 

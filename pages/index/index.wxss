@@ -19,7 +19,7 @@ audio{
   background: #f3f3f3;
 }
 .song-item.current{
-  color: #31c27c;
+  color: #ea5504;
 }
 .song-item .song-no{
   width: 30px;
@@ -32,7 +32,7 @@ audio{
   bottom: 0;
   left: 0;
   right: 0;
-  background: #31c27c;
+  background: #ea5504;
   color: #fff;
 }
 .song-info{
@@ -82,5 +82,9 @@ audio{
   line-height: 80rpx;
   text-align: center;
   border-radius: 50%;
-  background: #31c27c;
+  background: #ea5504;
+}
+
+.switch-artist.search{
+bottom: 300rpx;
 }
