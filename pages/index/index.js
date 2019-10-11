@@ -182,7 +182,7 @@ Page({
   },
   onShow: function(){
     const item = app.globalData.selectedSearchItem
-    if (item) {
+    if (item && item.song.src !== this.data.src) {
       var artist = artists[item.artistIndex]
       this.setArtist(artist)
       this.setData({
@@ -190,6 +190,7 @@ Page({
         name: item.song.songname
       })
       this.play()
+      app.globalData.selectedSearchItem = null
     } 
   }
 })
