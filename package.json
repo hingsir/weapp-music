@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "spider": "node spider/index.js",
-    "push": "yarn run spider && git add -A && git commit -m \"Site updated at `date`\" && git push origin backup",
+    "push": "yarn run spider && git add -A && git commit -m \"Site updated at `date +%Y\\-%m\\-%d\\ %T`\" && git push origin backup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
