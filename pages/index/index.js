@@ -170,6 +170,7 @@ Page({
       playList,
       displayList
     })
+    this.setMode(this.data.mode)
   },
   goSearch: function(){
     wx.navigateTo({
