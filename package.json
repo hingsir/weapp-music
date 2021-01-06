@@ -6,7 +6,7 @@
   "scripts": {
     "spider": "node spider/index.js",
     "logger": "node logger/index.js",
-    "push": "yarn run spider && yarn run logger && git add -A && git commit -m \"Site updated at `date +%Y\\-%m\\-%d\\ %T`\" && git push origin backup",
+    "push": "yarn run spider && yarn run logger && git add -A && git commit -m \"Site updated at %date:~0,10% %time:~0,8%\" && git push origin backup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
