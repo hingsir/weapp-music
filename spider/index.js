@@ -3,6 +3,7 @@ var ls = require('./lib/localstorage.js')
 var jsdom = require("jsdom")
 var fs = require("fs")
 var jquery = fs.readFileSync("./node_modules/jquery/dist/jquery.js", "utf-8")
+var decrypt = require('./lib/decrypt.js')
 
 var artists = require('../artists').filter((item) => {
   return !!item.memberid
@@ -92,9 +93,9 @@ function getSongPath(song, index) {
         return new Promise((resolve, reject) => {
             setTimeout(function() {
                 changba.fetch(song.enworkid, (err, data) => {
-                    var src = /http:\/\/\w+\.changba\.com\/.*?\w+\.mp3/.exec(data)
+                    var src = /enc_workpath\s*:\s*'(.*?)'/.exec(data)
                     if (src) {
-                        song.src = src[0]
+                        song.src = decrypt(src[1])
                         song.type = 'MP3'
                     } else {
                         song.src = `http://changba.com${song.enworkid}`

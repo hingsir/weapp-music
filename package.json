@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/hingsir/weapp-music#readme",
   "devDependencies": {
+    "crypto-js": "^4.0.0",
     "jquery": "^2.2.4",
     "jsdom": "^9.2.1"
   }
