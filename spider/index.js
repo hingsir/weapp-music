@@ -5,7 +5,7 @@ var fs = require("fs")
 var jquery = fs.readFileSync("./node_modules/jquery/dist/jquery.js", "utf-8")
 
 var artists = require('../artists').filter((item) => {
-  return /^\d+$/.test(item.uid)
+  return !!item.memberid
 })
 
 var timeoutIndex = 0;
@@ -29,7 +29,7 @@ function fetchData(artistIndex){
   timeoutIndex = 0
   console.log('开始抓取歌手：' + artist.uname)
   jsdom.env({
-    url: `http://changba.com/u/${artist.uid}`,
+    url: `http://changba.com/now/userPage.php?uid=${artist.memberid}`,
     src: [jquery],
     done: function(err, window) {
         var $ = window.$
@@ -42,20 +42,22 @@ function fetchData(artistIndex){
             })
         })
         var body = $('body').html()
-        var match = /userid\s*=\s*'(\w+?)'/.exec(body)
-        if(!match) {
+        var match = /userid\s*=\s*'(.+?)'/.exec(body)
+        var match1 = /curuserid\s*=\s*'(.+?)'/.exec(body)
+        if(!match || !match1) {
           console.error(body)
           return
         } 
         
         var userid = match[1]
+        var curuserid = match1[1]
 
-        changba.loadmore(userid, 1, function cb(pageNum, moreSongs) {
+        changba.loadmore(userid, curuserid , 1, function cb(pageNum, moreSongs) {
             songs = songs.concat(moreSongs)
             if (moreSongs.length == 0) {
                 getSongsPath(songs)
             } else {
-                changba.loadmore(userid, pageNum + 1, cb)
+                changba.loadmore(userid, curuserid , pageNum + 1, cb)
             }
         })
     }

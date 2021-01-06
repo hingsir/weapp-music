@@ -13,8 +13,6 @@ module.exports = {
         }
 
         var req = http.request(options, (res) => {
-            // console.log(`fetching: ${options.path}`)
-            // console.log(`status: ${res.statusCode}`)
             res.setEncoding('utf8')
             var content = ''
             res.on('data', (chunk) => {
@@ -31,8 +29,8 @@ module.exports = {
 
         req.end()
     },
-    loadmore: function(userid, pageNum, callback) {
-        this.fetch(`/member/personcenter/loadmore.php?ver=1&pageNum=${pageNum}&type=0&userid=${userid}`,
+    loadmore: function(userid, curuserid, pageNum, callback) {
+        this.fetch(`/member/personcenter/loadmore.php?ver=1&pageNum=${pageNum}&type=0&userid=${userid}&curuserid=${curuserid}`,
             (err, data) => {
                 var songs = []
                 JSON.parse(data).forEach((song) => {
