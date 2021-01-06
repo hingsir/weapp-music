@@ -28,6 +28,11 @@ module.exports = [
     uname: 'abc'
   },
   {
+    uid: '95052410_1',
+    memberid: 'DgYRpjz-L6t8ypZ-2wUzXg',
+    uname: 'abc2'
+  },
+  {
     uid: '160791581',
     memberid: 'uCASOwKbX5PRc7Rg16llPw',
     uname: 'Priscilla78'
