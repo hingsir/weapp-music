@@ -1,51 +1,38 @@
 {
-	"description": "项目配置文件。",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"autoAudits": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.9.5",
-	"appid": "wx96ec7d9d0b8baf3f",
-	"projectname": "%E5%94%B1%E5%90%A7%E5%94%B1%E5%90%A7",
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": []
-		}
-	}
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.9.5",
+  "appid": "wx96ec7d9d0b8baf3f",
+  "projectname": "%E5%94%B1%E5%90%A7%E5%94%B1%E5%90%A7",
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "list": []
+    }
+  }
 }
