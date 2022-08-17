@@ -6,7 +6,7 @@ make_looper(modes)
 
 Page({
   data: {
-    artistIndex: 3,
+    artistIndex: Math.max(artists.findIndex(item => item.isDefault), 0) ,
     displayList: [],
     src: null,
     name: null,
